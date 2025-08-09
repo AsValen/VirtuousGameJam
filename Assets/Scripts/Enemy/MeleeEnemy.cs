@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -135,9 +136,21 @@ public class MeleeEnemy : MonoBehaviour
         provoked = true;
         playerTransform = attacker;
     }
+    private bool isAttacking = false;
     private void DamagePlayer()
     {
-        if(playerHealth != null)
+        if(!isAttacking)
+        {
+            StartCoroutine(AttackDelay());
+        }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(2f);
+
+        if (playerHealth != null)
         {
             //Damage player health
             if (dashAbility == null || !dashAbility.IsInvulnerable)
@@ -149,5 +162,6 @@ public class MeleeEnemy : MonoBehaviour
                 Debug.Log("Player is invulerable, no damage applied");
             }
         }
+        isAttacking = false;
     }
 }
