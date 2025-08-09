@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1149848524244245551}
   - component: {fileID: -671070952183643038}
   - component: {fileID: 3548619378116652714}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyToyol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ MonoBehaviour:
   boxCollider: {fileID: 6116300114509821482}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   chaseSpeed: 2
   forgetTime: 5
 --- !u!114 &1149848524244245551
@@ -173,7 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  <currentHealth>k__BackingField: 0
   reviveTime: 5
+  isDead: 0
   components:
   - {fileID: 1446469302240995364}
   - {fileID: 0}
