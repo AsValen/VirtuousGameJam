@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
         bool grounded = raycastHit.collider != null;
-        Debug.Log($"Player is not on the ground: {grounded}");
+        Debug.Log($"Player is on the ground: {grounded}");
         return grounded;
     }
 

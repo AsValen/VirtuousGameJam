@@ -142,7 +142,7 @@ public class MeleeEnemy : MonoBehaviour
             //Damage player health
             if (dashAbility == null || !dashAbility.IsInvulnerable)
             {
-                playerHealth.DealDamageToPlayer(damage);
+                playerHealth.SetPlayerHP(damage);
             }
             else
             {

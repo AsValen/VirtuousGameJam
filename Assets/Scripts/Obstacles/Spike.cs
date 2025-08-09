@@ -11,7 +11,7 @@ public class Spike : MonoBehaviour
             PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
             if(playerStats != null)
             {
-                playerStats.DealDamageToPlayer(1); // Assuming spikes deal 1 damage
+                playerStats.SetPlayerHP(1); // Assuming spikes deal 1 damage
             }
         }
     }
