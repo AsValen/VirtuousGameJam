@@ -18,7 +18,8 @@ public class ExorcistEnemy : MonoBehaviour
     private Collider2D[] hits;
     private GameObject currentIndicator;
 
-    private Enemy enemyScript;
+    //private Enemy enemyHealth;
+    private EnemyHealth enemyHealth;
     private GameObject currentDeadEnemy;
     private Vector2 currentDeadEnemyPosition;
     private bool currentDeadEnemyStillInHits = false;
@@ -104,9 +105,9 @@ public class ExorcistEnemy : MonoBehaviour
 
                 if(currentDeadEnemy == null && !isWithinRange)
                 {
-                    enemyScript = hit.gameObject.GetComponent<Enemy>();
+                    enemyHealth = hit.gameObject.GetComponent<EnemyHealth>();
 
-                    if(enemyScript.IsDead)
+                    if(enemyHealth.IsDead)
                     {
                         currentDeadEnemy = hit.gameObject;
                         currentDeadEnemyPosition = hit.transform.position;
@@ -148,7 +149,7 @@ public class ExorcistEnemy : MonoBehaviour
     private void resetExorcist()
     {
         isWithinRange = false;
-        enemyScript = null;
+        enemyHealth = null;
         currentDeadEnemy = null;
         currentDeadEnemyStillInHits = false;
         currentDeadEnemyPosition = Vector2.zero;
