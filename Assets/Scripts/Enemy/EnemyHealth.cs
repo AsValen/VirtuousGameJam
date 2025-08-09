@@ -5,6 +5,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [Header("Enemy Health")]
     [SerializeField] private float startingHealth;
+    [field: SerializeField] public float currentHealth { get; private set; }
     [Header("Revive Duration")]
     [SerializeField] private float reviveTime = 5f;
     [Header("Revive")]
@@ -12,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
 
-    public float currentHealth { get; private set; }
+    
     public bool IsDead { get;private set; }
 
     private Animator anim;
