@@ -11,12 +11,14 @@ public class DashAbility : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private float dashSpeed = 5f;
+    [SerializeField] private float dashSpeed = 5f;
     private bool isDashCooldown = false;
-    private float dashCooldownDuration = 3.0f; 
+    [SerializeField]  private float dashCooldownDuration = 3.0f; 
     private bool isInvulnerable = false;
-    private float invulnerabilityDuration = 1f;
-    [SerializeField] float gravityScale = 1f;
+    [SerializeField] private float invulnerabilityDuration = 1f;
+    [SerializeField] private float gravityScale = 1f;
+
+    private bool isDashing = false;
 
     public static event Action OnPlayerDash;
 
@@ -33,6 +35,10 @@ public class DashAbility : MonoBehaviour
         get => isDashCooldown;
     }
 
+    public bool IsDashing
+    {
+        get => isDashing;
+    }
 
     private void OnEnable()
     {
@@ -77,11 +83,12 @@ public class DashAbility : MonoBehaviour
             rb.gravityScale = 0f;
             rb.linearVelocity = new Vector2(direction.x * dashSpeed, rb.linearVelocity.y);
 
-            //dashLineRenderer.positionCount = 2;
+            dashLineRenderer.positionCount = 2;
+            dashLineRenderer.SetPosition(0, dashStartPosition);
             dashLineRenderer.enabled = true;
-            //dashLineRenderer.SetPosition(0, dashStartPosition);
 
             OnPlayerDash?.Invoke();
+            isDashing = true;
             isDashCooldown = true;
             isInvulnerable = true;
             StartCoroutine(InvulnerabilityCoroutine());
@@ -91,10 +98,11 @@ public class DashAbility : MonoBehaviour
 
     private void Update()
     {
-        //if (!isDashCooldown && dashLineRenderer.enabled == true)
-        //{
-        //    dashLineRenderer.SetPosition(1, transform.position);
-        //}
+        if (isDashCooldown && dashLineRenderer.enabled == true)
+        {
+            Debug.Log("Dash Line Renderer is enabled, updating position.");
+            dashLineRenderer.SetPosition(1, transform.position);
+        }
     }
 
     private IEnumerator InvulnerabilityCoroutine()
@@ -102,6 +110,7 @@ public class DashAbility : MonoBehaviour
         yield return new WaitForSeconds(invulnerabilityDuration);
         dashLineRenderer.enabled = false;
         rb.gravityScale = gravityScale;
+        isDashing = false;
         isInvulnerable = false;
         Debug.Log("Dash invulnerability ended.");
     }
@@ -118,5 +127,6 @@ public class DashAbility : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dashLineRenderer = GetComponentInChildren<LineRenderer>();
+        dashLineRenderer.enabled = false;
     }
 }
