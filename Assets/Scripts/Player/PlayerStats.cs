@@ -15,12 +15,27 @@ public class PlayerStats : MonoBehaviour
         hpSlider.value = playerHP;
         UpdateHPUI();
     }
-    public int GetPlayerHP()
+
+    private void OnEnable()
     {
-        return playerHP;
+        ExorcistEnemy.OnExorcistEnemy += HealPlayer;
     }
 
-    public void SetPlayerHP(int damage)
+    private void OnDisable()
+    {
+        ExorcistEnemy.OnExorcistEnemy -= HealPlayer;
+    }
+
+    private void HealPlayer(int healingAmount)
+    {
+        playerHP = Mathf.Clamp(playerHP + healingAmount, 0, maxHP);
+        hpSlider.value = playerHP;
+        UpdateHPUI();
+    }
+
+    public int GetPlayerHP() => playerHP;
+
+    public void DealDamageToPlayer(int damage)
     {
         playerHP = Mathf.Clamp(playerHP - damage, 0, maxHP);
         hpSlider.value = playerHP;

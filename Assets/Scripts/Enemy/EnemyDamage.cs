@@ -7,6 +7,6 @@ public class EnemyDamage : MonoBehaviour
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
-            collision.GetComponent<PlayerStats>().SetPlayerHP(damage);
+            collision.GetComponent<PlayerStats>().DealDamageToPlayer(damage);
     }
 }
