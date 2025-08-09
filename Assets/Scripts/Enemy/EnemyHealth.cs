@@ -13,12 +13,17 @@ public class EnemyHealth : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
 
+    private SpriteRenderer sr;
+
     
     public bool IsDead { get;private set; }
 
     private Animator anim;
     private MeleeEnemy meleeEnemy;
-
+    private void Start()
+    {
+        sr = GetComponent<SpriteRenderer>();
+    }
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -69,6 +74,14 @@ public class EnemyHealth : MonoBehaviour
             {
                 component.enabled = true;
             }
+        }
+        if(IsDead)
+        {
+            sr.color = new Color(0.6f, 0.65f, 1f, 1f);
+        }
+        else
+        {
+            sr.color = new Color(1f, 1f, 1f, 1f);
         }
     }
     
