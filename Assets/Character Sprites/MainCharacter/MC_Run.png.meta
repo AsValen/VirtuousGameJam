@@ -149,10 +149,10 @@ TextureImporter:
       name: MC_Run_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 14
-        width: 149
-        height: 233
+        x: 0
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: MC_Run_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 10
-        width: 135
-        height: 230
+        x: 185
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,10 +193,10 @@ TextureImporter:
       name: MC_Run_2
       rect:
         serializedVersion: 2
-        x: 383
-        y: 9
-        width: 125
-        height: 235
+        x: 370
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,10 +215,10 @@ TextureImporter:
       name: MC_Run_3
       rect:
         serializedVersion: 2
-        x: 569
-        y: 12
-        width: 135
-        height: 233
+        x: 555
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,10 +237,10 @@ TextureImporter:
       name: MC_Run_4
       rect:
         serializedVersion: 2
-        x: 754
-        y: 6
-        width: 151
-        height: 244
+        x: 740
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,10 +259,10 @@ TextureImporter:
       name: MC_Run_5
       rect:
         serializedVersion: 2
-        x: 940
-        y: 19
-        width: 163
-        height: 231
+        x: 925
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,10 +281,10 @@ TextureImporter:
       name: MC_Run_6
       rect:
         serializedVersion: 2
-        x: 1123
-        y: 11
-        width: 169
-        height: 237
+        x: 1110
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -303,10 +303,10 @@ TextureImporter:
       name: MC_Run_7
       rect:
         serializedVersion: 2
-        x: 1309
-        y: 8
-        width: 155
-        height: 232
+        x: 1295
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -325,10 +325,10 @@ TextureImporter:
       name: MC_Run_8
       rect:
         serializedVersion: 2
-        x: 1494
-        y: 10
-        width: 142
-        height: 234
+        x: 1480
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -347,10 +347,10 @@ TextureImporter:
       name: MC_Run_9
       rect:
         serializedVersion: 2
-        x: 1682
-        y: 13
-        width: 150
-        height: 232
+        x: 1665
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -369,10 +369,10 @@ TextureImporter:
       name: MC_Run_10
       rect:
         serializedVersion: 2
-        x: 1865
-        y: 13
-        width: 169
-        height: 237
+        x: 1850
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -391,10 +391,10 @@ TextureImporter:
       name: MC_Run_11
       rect:
         serializedVersion: 2
-        x: 2051
-        y: 18
-        width: 167
-        height: 232
+        x: 2035
+        y: 0
+        width: 185
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -413,7 +413,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 171c51e7750b5f74ea5662c8c4e41578
     internalID: 0
     vertices: []
     indices: 
