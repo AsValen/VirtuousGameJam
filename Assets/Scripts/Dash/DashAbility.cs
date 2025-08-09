@@ -29,6 +29,9 @@ public class DashAbility : MonoBehaviour
     private LineRenderer dashLineRenderer;
     private Vector2 dashStartPosition;
 
+    private int enemyLayer = 6;
+    private int playerLayer = 7;
+
     public float DashCooldownDuration
     {
         get => dashCooldownDuration;
@@ -44,6 +47,11 @@ public class DashAbility : MonoBehaviour
         get => isDashing;
     }
 
+    public bool IsInvulnerable
+    {
+        get => isInvulnerable;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,6 +59,8 @@ public class DashAbility : MonoBehaviour
         dashLineRenderer = GetComponent<LineRenderer>();
         dashLineRenderer.enabled = false;
         audioSource = GetComponent<AudioSource>();
+        enemyLayer = 6;
+        playerLayer = 7;
     }
 
     private void OnEnable()
@@ -100,8 +110,9 @@ public class DashAbility : MonoBehaviour
             dashStartPosition = transform.position;
             gravityScale = rb.gravityScale;
             rb.gravityScale = 0f;
-            rb.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
-            //rb.linearVelocity = new Vector2(direction.x * dashSpeed, rb.linearVelocity.y);
+            //rb.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
+            Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, true);
+            rb.linearVelocity = new Vector2(direction.x * dashSpeed, Vector2.zero.y);
 
             dashLineRenderer.positionCount = 2;
             dashLineRenderer.SetPosition(0, dashStartPosition);
@@ -132,6 +143,7 @@ public class DashAbility : MonoBehaviour
         rb.gravityScale = gravityScale;
         isDashing = false;
         isInvulnerable = false;
+        Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, false);
         Debug.Log("Dash invulnerability ended.");
     }
 
