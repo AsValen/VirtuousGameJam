@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 
+[RequireComponent(typeof(AudioSource))]
 public class ExorcistEnemy : MonoBehaviour
 {
     private InputAction exorcist;
@@ -23,6 +24,15 @@ public class ExorcistEnemy : MonoBehaviour
     private bool currentDeadEnemyStillInHits = false;
     private GameObject exorcistMask;
     private float offset = 10f; // Offset for the mask position
+
+    [SerializeField] private int healingAmount = 1;
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip exorcistSound;
+    [SerializeField] private AudioClip enemyExorcistedSound;
+
+    public static event Action<int> OnExorcistEnemy;
+
 
     private void OnEnable()
     {
@@ -47,6 +57,8 @@ public class ExorcistEnemy : MonoBehaviour
     {
         if(isWithinRange)
         {
+            playSound(exorcistSound);
+
             Debug.Log("Exorcising enemy: " + currentDeadEnemy.name);
 
             exorcistMask.SetActive(true);
@@ -55,10 +67,13 @@ public class ExorcistEnemy : MonoBehaviour
 
             exorcistMask.transform.DOMove(currentDeadEnemyPosition, 0.5f).SetEase(Ease.OutSine).OnComplete(() => 
             {
+
+                playSound(enemyExorcistedSound);
                 //maybe need to add particle effects during tweening
                 Destroy(currentDeadEnemy);
                 exorcistMask.SetActive(false);
                 isExorcising = false;
+                OnExorcistEnemy?.Invoke(healingAmount);
                 resetExorcist();
             });
         }
@@ -72,6 +87,7 @@ public class ExorcistEnemy : MonoBehaviour
         enemyLayer = LayerMask.GetMask("Enemy");
         exorcistMask = GameObject.FindGameObjectWithTag("ExorcistMask");
         exorcistMask.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -136,6 +152,14 @@ public class ExorcistEnemy : MonoBehaviour
         currentDeadEnemy = null;
         currentDeadEnemyStillInHits = false;
         currentDeadEnemyPosition = Vector2.zero;
+    }
+
+    private void playSound(AudioClip sound)
+    {
+        if (audioSource != null && sound != null)
+        {
+            audioSource.PlayOneShot(sound);
+        }
     }
 
     private void OnDrawGizmosSelected()
