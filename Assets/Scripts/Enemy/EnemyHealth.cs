@@ -9,14 +9,14 @@ public class EnemyHealth : MonoBehaviour
     [Header("Revive Duration")]
     [SerializeField] private float reviveTime = 5f;
     [Header("Revive")]
-    [SerializeField] private bool isDead = false;
+    [SerializeField] public bool IsDead { get; private set; }
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
 
     private SpriteRenderer sr;
 
     
-    public bool IsDead { get;private set; }
+    
 
     private Animator anim;
     private MeleeEnemy meleeEnemy;
