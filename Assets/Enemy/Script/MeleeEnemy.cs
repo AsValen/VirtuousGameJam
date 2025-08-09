@@ -13,13 +13,18 @@ public class MeleeEnemy : MonoBehaviour
 
     [Header("Player Layer")]
     [SerializeField] private LayerMask playerLayer;
+
+    [Header("Chase Parameters")]
+    [SerializeField] private float chaseSpeed = 3f;
+
     private float cooldownTimer = Mathf.Infinity;
 
     //References
     //private Animator anim;
-    //private Health playerHealth;
-
+    private PlayerStats playerHealth;
+    private Transform playerTransform;
     private EnemyPatrol enemyPatrol;
+    private bool provoked = false;
 
     private void Awake()
     {
@@ -34,16 +39,18 @@ public class MeleeEnemy : MonoBehaviour
         //Attack only when player is sight
         if(PlayerInSight())
         {
-            if (cooldownTimer >= attackCooldown)
+            provoked = true;
+        }
+        if(provoked)
+        {
+            ChasePlayer();
+            if (cooldownTimer >= attackCooldown && PlayerInSight())
             {
                 //Attack
                 cooldownTimer = 0;
+                DamagePlayer();  //set this event inside Animation event
                 //anim.SetTrigger("basicAttack");
             }
-        }
-        if(enemyPatrol != null)
-        {
-            enemyPatrol.enabled = !PlayerInSight();  //if see player, stop patrolling
         }
     }
 
@@ -55,10 +62,11 @@ public class MeleeEnemy : MonoBehaviour
 
         if(hit.collider != null)
         {
-            //playerHealth = hit.transform.GetComponent<Health>();
+            playerHealth = hit.transform.GetComponent<PlayerStats>();
+            playerTransform = hit.transform;
+            return true;
         }
-
-        return hit.collider !=null;
+        return false;
     }
 
     private void OnDrawGizmos()
@@ -68,12 +76,33 @@ public class MeleeEnemy : MonoBehaviour
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
+    private void ChasePlayer()
+    {
+        if (playerTransform == null) return;
+
+        if (enemyPatrol != null)
+        {
+            enemyPatrol.enabled = !PlayerInSight();  //if see player, stop patrolling
+        }
+        //Chase player
+        transform.position = Vector2.MoveTowards(transform.position,playerTransform.position,chaseSpeed * Time.deltaTime);
+
+        //Face player
+        Vector3 scale = transform.localScale;
+        scale.x = playerTransform.position.x < transform.position.x ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
+        transform.localScale = scale;
+    }
+    public void OnDamaged(Transform attacker)
+    {
+        provoked = true;
+        playerTransform = attacker;
+    }
     private void DamagePlayer()
     {
         if(PlayerInSight())
         {
             //Damage player health
-            //playerHealth.TakeDamage(damage);
+            playerHealth.SetPlayerHP(damage);
         }
     }
 }
