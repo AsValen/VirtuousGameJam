@@ -894,15 +894,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -951,6 +951,22 @@ PrefabInstance:
     - target: {fileID: 3895476461573245922, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_Name
       value: Toyol
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057408792473417057, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057408792473417057, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057408792473417057, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5057408792473417057, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8848566490182433995, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_Color.b
