@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 3902015143298706228}
   - component: {fileID: 7903827790542198887}
   m_Layer: 0
-  m_Name: EnemyMannananggal
+  m_Name: EnemyPenanggal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,8 +7,9 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] private float range;
     [SerializeField] private int damage;
 
-    //[Header("Ranged Attack")]
-    //[SerializeField] Transform 
+    [Header("Ranged Attack")]
+    [SerializeField] private Transform firepoint;
+    [SerializeField] private GameObject[] fireballs;
 
     [Header("Attack Parameters")]
     [SerializeField] private float colliderDistance;
@@ -51,6 +52,19 @@ public class RangedEnemy : MonoBehaviour
     private void RangeAttack()
     {
         cooldownTimer = 0;
+        fireballs[FindFireball()].transform.position = firepoint.position;
+        fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
+    }
+    private int FindFireball()
+    {
+        for(int i=0;i<fireballs.Length;i++)
+        {
+            if (!fireballs[i].activeInHierarchy)
+            {
+                return i;
+            }
+        }
+        return 0;
     }
 
     private bool PlayerInSight()
