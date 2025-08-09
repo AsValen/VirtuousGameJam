@@ -59,6 +59,7 @@ public class ExorcistEnemy : MonoBehaviour
                 Destroy(currentDeadEnemy);
                 exorcistMask.SetActive(false);
                 isExorcising = false;
+                resetExorcist();
             });
         }
     }

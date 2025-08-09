@@ -24,7 +24,7 @@ public class DashCoolDownUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        dashAbility = GameObject.FindGameObjectWithTag("Player").GetComponent<DashAbility>();
+        dashAbility = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<DashAbility>();
         cooldownImage = GameObject.FindGameObjectWithTag("CooldownLayer").GetComponent<Image>();
         cooldownImage.fillAmount = 0f;
         cooldownTime = GetComponentInChildren<TextMeshProUGUI>();
