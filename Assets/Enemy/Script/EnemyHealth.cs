@@ -7,17 +7,22 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float startingHealth;
     [Header("Revive Duration")]
     [SerializeField] private float reviveTime = 5f;
+    [Header("Components")]
+    [SerializeField] private Behaviour[] components;
+
     public float currentHealth { get; private set; }
     public bool IsDead { get;private set; }
+
     private Animator anim;
     private MeleeEnemy meleeEnemy;
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,Transform attacker)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
         meleeEnemy = GetComponent<MeleeEnemy>();
@@ -43,14 +48,9 @@ public class EnemyHealth : MonoBehaviour
         IsDead = true;
         anim.SetTrigger("down");
 
-        if (GetComponentInParent<EnemyPatrol>() != null)
+        foreach(Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
         {
-            GetComponentInParent<EnemyPatrol>().enabled = false;
-        }
-
-        if (GetComponent<MeleeEnemy>() != null)
-        {
-            GetComponent<MeleeEnemy>().enabled = false;
+            component.enabled = false;
         }
 
         yield return new WaitForSeconds(reviveTime);
@@ -62,14 +62,9 @@ public class EnemyHealth : MonoBehaviour
 
             anim.SetTrigger("revive");
 
-            if (GetComponentInParent<EnemyPatrol>() != null)
+            foreach (Behaviour component in components)
             {
-                GetComponentInParent<EnemyPatrol>().enabled = true;
-            }
-
-            if (GetComponent<MeleeEnemy>() != null)
-            {
-                GetComponent<MeleeEnemy>().enabled = true;
+                component.enabled = true;
             }
         }
     }

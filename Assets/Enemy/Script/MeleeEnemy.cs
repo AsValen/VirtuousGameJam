@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MeleeEnemy : MonoBehaviour
 {
@@ -17,7 +18,12 @@ public class MeleeEnemy : MonoBehaviour
     [Header("Chase Parameters")]
     [SerializeField] private float chaseSpeed = 3f;
 
+    [Header("Forget Player Settings")]
+    [SerializeField] private float forgetTime = 5f; // seconds before returning to patrol
+    private float lastSeenTime;
+
     private float cooldownTimer = Mathf.Infinity;
+    private Vector3 initScale;
 
     //References
     //private Animator anim;
@@ -29,27 +35,50 @@ public class MeleeEnemy : MonoBehaviour
     private void Awake()
     {
         //anim  = GetComponent<Animator>();
+        initScale = transform.localScale;
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
     private void Update()
     {
-        cooldownTimer += Time.deltaTime;
 
+        if (playerHealth != null && playerHealth.GetPlayerHP() <= 0)
+        {
+            provoked = false;
+            playerTransform = null;
+            cooldownTimer = Mathf.Infinity;
+            if (enemyPatrol != null)
+                enemyPatrol.enabled = true;
+            return;
+        }
+
+        cooldownTimer += Time.deltaTime;
+        bool playerVisible = PlayerInSight();
         //Attack only when player is sight
-        if(PlayerInSight())
+        if(playerVisible)
         {
             provoked = true;
+            lastSeenTime = Time.time;
         }
         if(provoked)
         {
-            ChasePlayer();
-            if (cooldownTimer >= attackCooldown && PlayerInSight())
+            ChasePlayer(playerVisible);
+            if (cooldownTimer >= attackCooldown && playerVisible)
             {
                 //Attack
                 cooldownTimer = 0;
                 DamagePlayer();  //set this event inside Animation event
                 //anim.SetTrigger("basicAttack");
+            }
+
+            if (Time.time > lastSeenTime + forgetTime) //If hvnt seen player after sometime, stop chasing
+            {
+                provoked = false;
+                playerTransform = null;
+                cooldownTimer = Mathf.Infinity;
+
+                if (enemyPatrol != null)
+                    enemyPatrol.enabled = true; // resume patrol
             }
         }
     }
@@ -69,28 +98,32 @@ public class MeleeEnemy : MonoBehaviour
         return false;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmos() //Indication of Enemy Detection Range (visual purposes)
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
-    private void ChasePlayer()
+    private void ChasePlayer(bool playerVisible)
     {
         if (playerTransform == null) return;
 
         if (enemyPatrol != null)
         {
-            enemyPatrol.enabled = !PlayerInSight();  //if see player, stop patrolling
+            enemyPatrol.enabled = !playerVisible;  //if see player, stop patrolling
         }
-        //Chase player
-        transform.position = Vector2.MoveTowards(transform.position,playerTransform.position,chaseSpeed * Time.deltaTime);
+        float distance = Vector2.Distance(transform.position, playerTransform.position);
+        if(distance > 1f)
+        {
+            //Chase player
+            Vector2 targetPosition = new Vector2(playerTransform.position.x, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, chaseSpeed * Time.deltaTime);
 
-        //Face player
-        Vector3 scale = transform.localScale;
-        scale.x = playerTransform.position.x < transform.position.x ? Mathf.Abs(scale.x) : -Mathf.Abs(scale.x);
-        transform.localScale = scale;
+            //Face player
+            float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+            transform.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
+        }
     }
     public void OnDamaged(Transform attacker)
     {
@@ -99,7 +132,7 @@ public class MeleeEnemy : MonoBehaviour
     }
     private void DamagePlayer()
     {
-        if(PlayerInSight())
+        if(playerHealth != null)
         {
             //Damage player health
             playerHealth.SetPlayerHP(damage);

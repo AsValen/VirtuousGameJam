@@ -158,6 +158,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 0
+  chaseSpeed: 2
+  forgetTime: 5
 --- !u!114 &1149848524244245551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +173,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+  reviveTime: 5
+  components:
+  - {fileID: 1446469302240995364}
+  - {fileID: 0}
 --- !u!114 &-671070952183643038
 MonoBehaviour:
   m_ObjectHideFlags: 0
