@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6515126172389559678}
   - component: {fileID: 8653563412684692178}
   - component: {fileID: 4937232790336914177}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FloatingSigns
   m_TagString: Ground
   m_Icon: {fileID: 0}

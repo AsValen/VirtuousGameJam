@@ -52,7 +52,7 @@ public class Laser : MonoBehaviour
                 if (playerStats != null)
                 {
                     Debug.Log("Player hit by laser!");
-                    playerStats.SetPlayerHP(10);
+                    playerStats.DealDamageToPlayer(10);
                 }
             }
         }
