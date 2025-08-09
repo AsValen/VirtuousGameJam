@@ -363,7 +363,6 @@ GameObject:
   - component: {fileID: 701032968}
   - component: {fileID: 701032971}
   - component: {fileID: 701032972}
-  - component: {fileID: 701032970}
   - component: {fileID: 701032973}
   - component: {fileID: 701032974}
   m_Layer: 0
@@ -444,22 +443,6 @@ Transform:
   - {fileID: 1972051752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &701032970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701032967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6997184ab925d6544a7d200a8faf8e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashSpeed: 5
-  dashCooldownDuration: 3
-  invulnerabilityDuration: 0.5
-  gravityScale: 1
 --- !u!50 &701032971
 Rigidbody2D:
   serializedVersion: 5
@@ -583,22 +566,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exorcistRange: 3
---- !u!114 &1090234278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090234271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6997184ab925d6544a7d200a8faf8e2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashSpeed: 5
-  dashCooldownDuration: 3
-  invulnerabilityDuration: 1
-  gravityScale: 1
 --- !u!1001 &1176176623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -719,9 +686,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 327847913}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7823314004192025259, guid: 7ce1fad3b75ebe748b264ed773a75607, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1090234278}
     - targetCorrespondingSourceObject: {fileID: 7823314004192025259, guid: 7ce1fad3b75ebe748b264ed773a75607, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1090234277}

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections;
 using System;
 
+[RequireComponent(typeof(AudioSource))]
 public class DashAbility : MonoBehaviour
 {
     private InputAction dash;
@@ -17,6 +18,9 @@ public class DashAbility : MonoBehaviour
     private bool isInvulnerable = false;
     [SerializeField] private float invulnerabilityDuration = 1f;
     [SerializeField] private float gravityScale = 1f;
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip dashSound;
 
     private bool isDashing = false;
 
@@ -38,6 +42,15 @@ public class DashAbility : MonoBehaviour
     public bool IsDashing
     {
         get => isDashing;
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        rb = GetComponentInParent<Rigidbody2D>();
+        dashLineRenderer = GetComponent<LineRenderer>();
+        dashLineRenderer.enabled = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -78,6 +91,12 @@ public class DashAbility : MonoBehaviour
     {  
         if (!isDashCooldown)
         {
+
+            if (audioSource != null && dashSound != null)
+            {
+                audioSource.PlayOneShot(dashSound);
+            }
+
             dashStartPosition = transform.position;
             gravityScale = rb.gravityScale;
             rb.gravityScale = 0f;
@@ -121,13 +140,5 @@ public class DashAbility : MonoBehaviour
         yield return new WaitForSeconds(dashCooldownDuration);
         isDashCooldown = false;
         Debug.Log("Cool Down ended");
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        dashLineRenderer = GetComponentInChildren<LineRenderer>();
-        dashLineRenderer.enabled = false;
     }
 }
