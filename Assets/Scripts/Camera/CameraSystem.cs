@@ -19,7 +19,7 @@ public class CameraSystem : MonoBehaviour
 
         mainCamera.orthographic = true;
 
-        //player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     // Update is called once per frame

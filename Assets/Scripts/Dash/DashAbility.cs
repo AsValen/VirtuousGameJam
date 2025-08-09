@@ -81,7 +81,8 @@ public class DashAbility : MonoBehaviour
             dashStartPosition = transform.position;
             gravityScale = rb.gravityScale;
             rb.gravityScale = 0f;
-            rb.linearVelocity = new Vector2(direction.x * dashSpeed, rb.linearVelocity.y);
+            rb.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
+            //rb.linearVelocity = new Vector2(direction.x * dashSpeed, rb.linearVelocity.y);
 
             dashLineRenderer.positionCount = 2;
             dashLineRenderer.SetPosition(0, dashStartPosition);
