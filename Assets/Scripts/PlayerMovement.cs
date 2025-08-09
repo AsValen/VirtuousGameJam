@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,25 +6,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpHeight =8f;
 
-    [SerializeField] private int playerHP = 10;
-    private int maxHP;
-    [SerializeField] private Slider hpSlider;
-    [SerializeField] private Image fillImage;
+    private PlayerStats stats;
 
     private bool isGrounded;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
-        maxHP = playerHP;
-        hpSlider.maxValue = maxHP;
-        hpSlider.value = playerHP;
-        UpdateHPUI();
-    }
+        stats = GetComponent<PlayerStats>();
+    }    
 
     private void Update()
     {
@@ -41,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody.linearVelocity = new Vector2(rigidBody.linearVelocity.x, jumpHeight);
         isGrounded = false;
-        SetPlayerHP(1);
+        stats.SetPlayerHP(1);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,34 +39,5 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-    }
-
-    public int GetPlayerHP()
-    {
-        return playerHP;
-    }
-
-    public void SetPlayerHP(int damage)
-    {
-        playerHP = Mathf.Clamp(playerHP - damage, 0, maxHP);
-        hpSlider.value = playerHP;
-
-        UpdateHPUI();
-    }
-
-    private void UpdateHPUI()
-    {
-        if (playerHP <= 0)
-        {
-            Destroy(gameObject);
-        }
-        else if (playerHP <= 3)
-        {
-            fillImage.color = Color.red;
-        }
-        else
-        {
-            fillImage.color = Color.green;
-        }
-    }
+    }    
 }
