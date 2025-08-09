@@ -25,11 +25,13 @@ public class ExorcistEnemy : MonoBehaviour
     private GameObject exorcistMask;
     private float offset = 10f; // Offset for the mask position
 
-    [SerializeField] private float healingAmount = 20f;
+    [SerializeField] private int healingAmount = 1;
 
     private AudioSource audioSource;
     [SerializeField] private AudioClip exorcistSound;
     [SerializeField] private AudioClip enemyExorcistedSound;
+
+    public static event Action<int> OnExorcistEnemy;
 
 
     private void OnEnable()
@@ -71,6 +73,7 @@ public class ExorcistEnemy : MonoBehaviour
                 Destroy(currentDeadEnemy);
                 exorcistMask.SetActive(false);
                 isExorcising = false;
+                OnExorcistEnemy?.Invoke(healingAmount);
                 resetExorcist();
             });
         }
