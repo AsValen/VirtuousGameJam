@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float startingHealth;
     [Header("Revive Duration")]
     [SerializeField] private float reviveTime = 5f;
+    [Header("Revive")]
+    [SerializeField] private bool isDead = false;
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
 

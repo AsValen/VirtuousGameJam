@@ -30,8 +30,13 @@ public class MeleeEnemy : MonoBehaviour
     private PlayerStats playerHealth;
     private Transform playerTransform;
     private EnemyPatrol enemyPatrol;
+    private DashAbility dashAbility;
     private bool provoked = false;
 
+    private void Start()
+    {
+        dashAbility = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<DashAbility>();
+    }
     private void Awake()
     {
         //anim  = GetComponent<Animator>();
@@ -135,7 +140,14 @@ public class MeleeEnemy : MonoBehaviour
         if(playerHealth != null)
         {
             //Damage player health
-            playerHealth.SetPlayerHP(damage);
+            if (dashAbility == null || !dashAbility.IsInvulnerable)
+            {
+                playerHealth.SetPlayerHP(damage);
+            }
+            else
+            {
+                Debug.Log("Player is invulerable, no damage applied");
+            }
         }
     }
 }
