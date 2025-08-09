@@ -25,6 +25,12 @@ public class CameraSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(player == null)
+        {
+            Debug.LogWarning("Player not found! Camera will not follow.");
+            return;
+        }
+
         Vector3 desiredPosition = player.position;
         Vector3 currentPosition = transform.position;
         Vector3 direction = (desiredPosition - currentPosition).normalized;
