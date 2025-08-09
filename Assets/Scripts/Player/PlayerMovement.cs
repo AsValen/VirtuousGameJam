@@ -19,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
-        dash = GetComponent<DashAbility>();
-    }    
+        dash = GetComponentInChildren<DashAbility>();
+    }
 
     private void Update()
     {
