@@ -6,12 +6,19 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private BoxCollider2D boxCollider;
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpHeight = 10f;
 
     private DashAbility dash;
     private float horizontalInput;
+
+    private AudioSource walkAudioSource;
+    private AudioSource jumpAudioSource;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip walkingSound;
+    private bool isWalkingSoundPlaying = false;
 
     private void Start()
     {
@@ -20,15 +27,33 @@ public class PlayerMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         dash = GetComponentInChildren<DashAbility>();
+        walkAudioSource = gameObject.AddComponent<AudioSource>();
+        jumpAudioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        //rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
-
         if (!dash.IsDashing)
         {
+            if (Mathf.Abs(horizontalInput) > 0.01f && isGrounded())
+            {
+                if (!isWalkingSoundPlaying)
+                {
+                    walkAudioSource.loop = true;
+                    walkAudioSource.clip = walkingSound;
+                    walkAudioSource.Play();
+                    isWalkingSoundPlaying = true;
+                }
+            }
+            else
+            {
+                if (isWalkingSoundPlaying)
+                {
+                    walkAudioSource.Stop();
+                    isWalkingSoundPlaying = false;
+                }
+            }
             rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
         }
 
@@ -55,7 +80,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dash.IsDashing)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
+             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
+            if (jumpAudioSource != null && jumpSound != null)
+            {
+                jumpAudioSource.PlayOneShot(jumpSound);
+            }
             anim.SetTrigger("Jump");
             anim.SetBool("isGrounded", false);
         }

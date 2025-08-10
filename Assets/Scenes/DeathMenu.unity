@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 866659341}
   - component: {fileID: 866659340}
   - component: {fileID: 866659339}
+  - component: {fileID: 866659342}
   m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
@@ -601,6 +602,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 866659337}
   m_CullTransparentMesh: 1
+--- !u!114 &866659342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866659337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcca0a52d394724baa524242399e626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: ee76c788067771749862f477509f2276, type: 3}
 --- !u!1 &1327911683
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +737,8 @@ MonoBehaviour:
   title: {fileID: 1834992689}
   restart: {fileID: 2115191222}
   mainmenu: {fileID: 866659339}
+  bgm: {fileID: 8300000, guid: 75b83910eeacd264786d6a013d40da37, type: 3}
+  buttonClick: {fileID: 8300000, guid: c28cbe7df8831ea459f2bd92d25ceed6, type: 3}
 --- !u!1 &1576904380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1072,7 @@ GameObject:
   - component: {fileID: 2115191224}
   - component: {fileID: 2115191223}
   - component: {fileID: 2115191222}
+  - component: {fileID: 2115191225}
   m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
@@ -1177,6 +1194,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115191220}
   m_CullTransparentMesh: 1
+--- !u!114 &2115191225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115191220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fcca0a52d394724baa524242399e626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: {fileID: 8300000, guid: ee76c788067771749862f477509f2276, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

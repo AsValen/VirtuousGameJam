@@ -1,33 +1,42 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using DG.Tweening;
 using UnityEngine.UI;
 
 public class WinMenu : MonoBehaviour
 {
-    [SerializeField] private Image title;
-    [SerializeField] private Button restart;
-    [SerializeField] private Button mainMenu;
+	[SerializeField] private Button mainMenu;
+
+    private AudioSource bgmSource;
+    private AudioSource sfxSource;
+
+    [SerializeField] private AudioClip bgm;
+	[SerializeField] private AudioClip buttonClick;
+
 
 	private void Start()
 	{
-        title.rectTransform.DOScale(1.2f, 0.5f).SetEase(Ease.OutBounce).SetDelay(0.2f).OnComplete(() =>
-        {
-            title.rectTransform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad);
-        });
+        bgmSource = gameObject.AddComponent<AudioSource>();
+        bgmSource.loop = true;
+        bgmSource.clip = bgm;
+        bgmSource.Play();
+
+        sfxSource = gameObject.AddComponent<AudioSource>();
+
         // Set up button animations
         mainMenu.transform.localScale = Vector3.zero;
 		mainMenu.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack);
-        restart.transform.localScale = Vector3.zero;
-        restart.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
-    }
+	}
+
     public void RestartGame()
     {
+        sfxSource.PlayOneShot(buttonClick);
         SceneManager.LoadScene("Level1");
     }
 
     public void MainMenu()
 	{
-		SceneManager.LoadScene("MainMenu");
+        sfxSource.PlayOneShot(buttonClick);
+        SceneManager.LoadScene("MainMenu");
 	}
 }
