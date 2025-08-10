@@ -28,7 +28,13 @@ public class WinMenu : MonoBehaviour
 		mainMenu.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack);
 	}
 
-	public void MainMenu()
+    public void RestartGame()
+    {
+        sfxSource.PlayOneShot(buttonClick);
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void MainMenu()
 	{
         sfxSource.PlayOneShot(buttonClick);
         SceneManager.LoadScene("MainMenu");
