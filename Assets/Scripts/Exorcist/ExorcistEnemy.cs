@@ -5,6 +5,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(AudioSource))]
 public class ExorcistEnemy : MonoBehaviour
@@ -24,7 +25,7 @@ public class ExorcistEnemy : MonoBehaviour
     private Vector2 currentDeadEnemyPosition;
     private bool currentDeadEnemyStillInHits = false;
     private GameObject exorcistMask;
-    private float offset = 10f; // Offset for the mask position
+    private float offset = 2f; // Offset for the mask position
 
     [SerializeField] private int healingAmount = 1;
 
@@ -34,6 +35,7 @@ public class ExorcistEnemy : MonoBehaviour
 
     public static event Action<int> OnExorcistEnemy;
 
+    private Animator animator;
 
     public bool IsExorcising
     {
@@ -63,22 +65,28 @@ public class ExorcistEnemy : MonoBehaviour
     {
         if(isWithinRange)
         {
+            isExorcising = true;
+            animator.SetBool("IsExorcist", true);
+
             playSound(exorcistSound);
 
             Debug.Log("Exorcising enemy: " + currentDeadEnemy.name);
 
             exorcistMask.SetActive(true);
 
+            currentDeadEnemyPosition = currentDeadEnemy.transform.position;
             exorcistMask.transform.position = new Vector2(currentDeadEnemyPosition.x, currentDeadEnemyPosition.y + offset);
 
             exorcistMask.transform.DOMove(currentDeadEnemyPosition, 0.5f).SetEase(Ease.OutSine).OnComplete(() => 
             {
-
                 playSound(enemyExorcistedSound);
                 //maybe need to add particle effects during tweening
                 Destroy(currentDeadEnemy);
                 exorcistMask.SetActive(false);
                 isExorcising = false;
+
+                animator.SetBool("IsExorcist", false);
+
                 OnExorcistEnemy?.Invoke(healingAmount);
                 resetExorcist();
             });
@@ -90,16 +98,29 @@ public class ExorcistEnemy : MonoBehaviour
     {
         isExorcising = false;
         isWithinRange = false;
-        enemyLayer = LayerMask.GetMask("Enemy");
-        exorcistMask = GameObject.FindGameObjectWithTag("ExorcistMask");
-        exorcistMask.SetActive(false);
+        enemyLayer = LayerMask.NameToLayer("Enemy");
+        //exorcistMask = GameObject.FindGameObjectWithTag("ExorcistMask");
+        //exorcistMask.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInParent<Animator>();
+    }
+
+    GameObject FindChildWithTag(GameObject parent, string tag)
+    {
+        foreach (Transform child in parent.transform)
+        {
+            if (child.CompareTag(tag))
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        hits = Physics2D.OverlapCircleAll(transform.position, exorcistRange, enemyLayer);
+        hits = Physics2D.OverlapCircleAll(transform.position, exorcistRange);
 
         if (hits.Length > 0)
         {
@@ -107,18 +128,27 @@ public class ExorcistEnemy : MonoBehaviour
 
             foreach (Collider2D hit in hits)
             {
-
-                if(currentDeadEnemy == null && !isWithinRange)
+                Debug.Log(hit.gameObject.layer);
+                if(hit.gameObject.layer == enemyLayer)
                 {
-                    enemyHealth = hit.gameObject.GetComponent<EnemyHealth>();
-
-                    if(enemyHealth.IsDead)
+                    if(currentDeadEnemy == null && !isWithinRange)
                     {
-                        currentDeadEnemy = hit.gameObject;
-                        currentDeadEnemyPosition = hit.transform.position;
-                        currentDeadEnemyStillInHits = true;
-                        isWithinRange = true;
-                    }
+                        enemyHealth = hit.gameObject.GetComponentInChildren<EnemyHealth>();
+
+                        Debug.Log("within Enemy");
+                        Debug.Log(enemyHealth.IsDead);
+
+                        if (enemyHealth.IsDead)
+                        {
+                            Debug.Log("enemy dead");
+                            Debug.Log(hit.gameObject);
+                            exorcistMask = FindChildWithTag(hit.gameObject, "ExorcistMask");
+                            exorcistMask.SetActive(false);
+                            currentDeadEnemy = hit.gameObject;
+                            currentDeadEnemyStillInHits = true;
+                            isWithinRange = true;
+                        }
+                    }                  
                 }
 
                 i++;
@@ -131,13 +161,14 @@ public class ExorcistEnemy : MonoBehaviour
                         currentDeadEnemyStillInHits = true;
                         break;
                         Debug.Log("Current dead enemy is still in hits");
-                    } 
+                    }
                     else if (currentDeadEnemy != hit.gameObject && i == hits.Length)
                     {
                         Debug.Log("Current dead enemy is not in hits anymore");
                         currentDeadEnemyStillInHits = false;
                     }
-                }               
+                }
+
             }
 
             if(!currentDeadEnemyStillInHits)
@@ -153,6 +184,7 @@ public class ExorcistEnemy : MonoBehaviour
 
     private void resetExorcist()
     {
+        exorcistMask = null;
         isWithinRange = false;
         enemyHealth = null;
         currentDeadEnemy = null;

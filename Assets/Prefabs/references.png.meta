@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: d7bf205dc7d9b184ca389357741c66e8
+guid: 42ce0d928ee5e1540a243c170e41ea64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -9143565096234924574
-    second: MC_HeavyHIT_0
-  - first:
-      213: -2027432375553552080
-    second: MC_HeavyHIT_1
-  - first:
-      213: -9155120957099242531
-    second: MC_HeavyHIT_2
-  - first:
-      213: -4894250443273797065
-    second: MC_HeavyHIT_3
-  - first:
-      213: 5243798702320681781
-    second: MC_HeavyHIT_4
+      213: -8311154744457513310
+    second: references_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_HeavyHIT_0
+      name: references_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 250
-        height: 300
+        width: 1750
+        height: 211
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,74 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2e5c14a5df78b1180800000000000000
-      internalID: -9143565096234924574
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC_HeavyHIT_1
-      rect:
-        serializedVersion: 2
-        x: 250
-        y: 0
-        width: 250
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 03111090ffc1dd3e0800000000000000
-      internalID: -2027432375553552080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC_HeavyHIT_2
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 250
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ddb8d54def972f080800000000000000
-      internalID: -9155120957099242531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC_HeavyHIT_3
-      rect:
-        serializedVersion: 2
-        x: 750
-        y: 0
-        width: 250
-        height: 300
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7320ed61721241cb0800000000000000
-      internalID: -4894250443273797065
+      spriteID: 2a6be475bc8d8ac80800000000000000
+      internalID: -8311154744457513310
       vertices: []
       indices: 
       edges: []
@@ -216,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 05093d7d795909847a606a1a836781cc
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -226,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MC_HeavyHIT_0: -9143565096234924574
-      MC_HeavyHIT_1: -2027432375553552080
-      MC_HeavyHIT_2: -9155120957099242531
-      MC_HeavyHIT_3: -4894250443273797065
+      references_0: -8311154744457513310
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int playerHP = 10;
+    [SerializeField] private int playerHP = 100;
     private int maxHP;
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Image fillImage;
@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
 
     public int GetPlayerHP() => playerHP;
 
-    public void DealDamageToPlayer(int damage)
+    public void SetPlayerHP(int damage)
     {
         playerHP = Mathf.Clamp(playerHP - damage, 0, maxHP);
         hpSlider.value = playerHP;

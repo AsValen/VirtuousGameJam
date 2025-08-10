@@ -22,6 +22,8 @@ public class DashAbility : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip dashSound;
 
+    private Animator animator;
+
     private bool isDashing = false;
 
     public static event Action OnPlayerDash;
@@ -61,6 +63,7 @@ public class DashAbility : MonoBehaviour
         dashLineRenderer = GetComponent<LineRenderer>();
         dashLineRenderer.enabled = false;
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInParent<Animator>();
         enemyLayer = 6;
         playerLayer = 7;
     }
@@ -125,6 +128,7 @@ public class DashAbility : MonoBehaviour
             isDashCooldown = true;
             isInvulnerable = true;
             //StartCoroutine(InvulnerabilityCoroutine());
+            animator.SetBool("IsDashing", true);
             StartCoroutine(CoolDownCoroutine());
         }
     }
@@ -156,6 +160,8 @@ public class DashAbility : MonoBehaviour
         Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, false);
         dashLineRenderer.enabled = false;
         isInvulnerable = false;
+
+        animator.SetBool("IsDashing", false);
     }
 
     private IEnumerator InvulnerabilityCoroutine()

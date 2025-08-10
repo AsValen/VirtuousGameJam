@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d973dd0654b65bf4283b082eeae4e55f
+guid: 213a60f7541734f4d95611c2f543abb8
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -117,6 +117,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -124,10 +137,10 @@ TextureImporter:
       name: MC_HeavyCharge_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 24
-        width: 142
-        height: 240
+        x: 0
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -146,10 +159,10 @@ TextureImporter:
       name: MC_HeavyCharge_1
       rect:
         serializedVersion: 2
-        x: 313
-        y: 24
-        width: 124
-        height: 236
+        x: 250
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +181,10 @@ TextureImporter:
       name: MC_HeavyCharge_2
       rect:
         serializedVersion: 2
-        x: 551
-        y: 24
-        width: 176
-        height: 249
+        x: 500
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,10 +203,10 @@ TextureImporter:
       name: MC_HeavyCharge_3
       rect:
         serializedVersion: 2
-        x: 798
-        y: 23
-        width: 193
-        height: 263
+        x: 750
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +225,10 @@ TextureImporter:
       name: MC_HeavyCharge_4
       rect:
         serializedVersion: 2
-        x: 1048
-        y: 23
-        width: 192
-        height: 264
+        x: 1000
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +247,10 @@ TextureImporter:
       name: MC_HeavyCharge_5
       rect:
         serializedVersion: 2
-        x: 1298
-        y: 23
-        width: 192
-        height: 265
+        x: 1250
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +269,10 @@ TextureImporter:
       name: MC_HeavyCharge_6
       rect:
         serializedVersion: 2
-        x: 1548
-        y: 23
-        width: 194
-        height: 265
+        x: 1500
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +291,10 @@ TextureImporter:
       name: MC_HeavyCharge_7
       rect:
         serializedVersion: 2
-        x: 1798
-        y: 23
-        width: 193
-        height: 265
+        x: 1750
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,7 +313,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 6616fa53d67a4a74e8c270d4f11fd82e
     internalID: 0
     vertices: []
     indices: 

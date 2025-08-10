@@ -7,6 +7,7 @@ TagManager:
   - CooldownLayer
   - ExorcistMask
   - Ground
+  - Enemy
   layers:
   - Default
   - TransparentFX
