@@ -34,6 +34,7 @@ public class ExorcistEnemy : MonoBehaviour
 
     public static event Action<int> OnExorcistEnemy;
 
+    private Animator animator;
 
     public bool IsExorcising
     {
@@ -63,6 +64,9 @@ public class ExorcistEnemy : MonoBehaviour
     {
         if(isWithinRange)
         {
+            isExorcising = true;
+            animator.SetBool("IsExorcist", true);
+
             playSound(exorcistSound);
 
             Debug.Log("Exorcising enemy: " + currentDeadEnemy.name);
@@ -79,6 +83,9 @@ public class ExorcistEnemy : MonoBehaviour
                 Destroy(currentDeadEnemy);
                 exorcistMask.SetActive(false);
                 isExorcising = false;
+
+                animator.SetBool("IsExorcist", false);
+
                 OnExorcistEnemy?.Invoke(healingAmount);
                 resetExorcist();
             });
@@ -94,6 +101,7 @@ public class ExorcistEnemy : MonoBehaviour
         exorcistMask = GameObject.FindGameObjectWithTag("ExorcistMask");
         exorcistMask.SetActive(false);
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame

@@ -25,12 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        //rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
 
-        //if (!dash.IsDashing)
-        //{
-        //    rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
-        //}
+        if (!dash.IsDashing)
+        {
+            rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        }
 
         if (horizontalInput > 0.01f) //Sprite turn right
         {
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
         anim.SetTrigger("Jump");
+        anim.SetBool("isGrounded", false);
     }
 
     private bool isGrounded()

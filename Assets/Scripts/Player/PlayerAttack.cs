@@ -28,8 +28,6 @@ public class PlayerAttack : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         weapon = weaponHitBoxTransform.GetComponent<WeaponHitbox>();
-        baseAttackAction = InputSystem.actions.FindAction("BaseAttack");
-        heavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
         movement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
     }
@@ -46,6 +44,10 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnEnable()
     {
+
+        baseAttackAction = InputSystem.actions.FindAction("BaseAttack");
+        heavyAttackAction = InputSystem.actions.FindAction("HeavyAttack");
+
         if (baseAttackAction != null)
             baseAttackAction.performed += OnBaseAttackPerformed;
 
@@ -92,9 +94,13 @@ public class PlayerAttack : MonoBehaviour
     {
         if (movement.CanAttack() && attackTimer <= 0f)
         {
+            movement.enabled = false;
             isCharging = true;
             chargeStartTime = Time.time;
-            animator.SetBool("Charging", true);
+            animator.SetBool("isCharging", true);
+            animator.SetBool("isChargeLooping", false);
+
+            StartCoroutine(EnableChargeLoopAfterDelay(0.1f));
         }
     }
 
@@ -106,7 +112,8 @@ public class PlayerAttack : MonoBehaviour
         }
         isCharging = false;
 
-        animator.SetBool("Charging", false);
+        animator.SetBool("isCharging", false);
+        animator.SetBool("isChargeLooping", false);
 
         float heldTime = Time.time - chargeStartTime;
         float chargeRatio = Mathf.Clamp01(heldTime / maxChargeTime);
@@ -121,6 +128,7 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(DisableHitboxAfterTime(0.3f));
         }
 
+        StartCoroutine(EnableMovementAfterHeavyHit(1.5f));
         attackTimer = attackCooldown;
     }
 
@@ -129,18 +137,37 @@ public class PlayerAttack : MonoBehaviour
         if (sr.flipX)
         {
             weaponHitBoxTransform.localPosition = weaponOffsetLeft;
-            weaponHitBoxTransform.localScale = new Vector3(-1, 1, 1);
+            weaponHitBoxTransform.localScale = new Vector3(-1.5f, 1, 1);
         }
         else
         {
             weaponHitBoxTransform.localPosition = weaponOffsetRight;
-            weaponHitBoxTransform.localScale = new Vector3(1, 1, 1);
+            weaponHitBoxTransform.localScale = new Vector3(1.5f, 1, 1);
         }
     }
+
+    private IEnumerator EnableChargeLoopAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (isCharging)
+        {
+            animator.SetBool("isChargeLooping", true);
+        }
+    }
+
     private IEnumerator DisableHitboxAfterTime(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (weapon != null)
+        {
             weapon.DisableHitbox();
+        }
+    }
+
+    private IEnumerator EnableMovementAfterHeavyHit(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        movement.enabled = true;
     }
 }
