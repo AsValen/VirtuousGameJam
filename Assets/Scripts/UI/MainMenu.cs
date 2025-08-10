@@ -11,16 +11,16 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        //// Animate the title
-        //title.rectTransform.DOScale(1.2f, 0.5f).SetEase(Ease.OutBounce).OnComplete(() =>
-        //{
-        //    title.rectTransform.DOScale(1f, 0.5f).SetEase(Ease.InOutQuad);
-        //});
-        //// Set up button animations
-        //play.transform.localScale = Vector3.zero;
-        //quit.transform.localScale = Vector3.zero;
-        //play.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
-        //quit.transform.DOScale(1f, 0.5f).SetEase(Ease.OutBack).SetDelay(1f);
+        // Animate the title
+        title.rectTransform.DOScale(4.2f, 0.5f).SetEase(Ease.OutBounce).SetDelay(0.2f).OnComplete(() =>
+        {
+            title.rectTransform.DOScale(4f, 0.5f).SetEase(Ease.InOutQuad);
+        });
+        // Set up button animations
+        play.transform.localScale = Vector3.zero;
+        quit.transform.localScale = Vector3.zero;
+        play.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
+        quit.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(1f);
     }
 
     public void PlayGame()
