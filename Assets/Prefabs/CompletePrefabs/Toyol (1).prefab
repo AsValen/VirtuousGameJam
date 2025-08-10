@@ -201,10 +201,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 6738182999062446498}
     m_Modifications:
     - target: {fileID: 1149848524244245551, guid: acc5fd05ed2894d4786730a5c698aff3, type: 3}
-      propertyPath: isDead
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1149848524244245551, guid: acc5fd05ed2894d4786730a5c698aff3, type: 3}
       propertyPath: 'components.Array.data[1]'
       value: 
       objectReference: {fileID: 4682705093825329805}
