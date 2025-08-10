@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1149848524244245551}
   - component: {fileID: -671070952183643038}
   m_Layer: 6
-  m_Name: EnemyToyol
+  m_Name: DontUseEnemyToyol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

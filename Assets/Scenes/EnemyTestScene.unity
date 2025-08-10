@@ -442,31 +442,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 266727054198677409, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1535585265091985959, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2894634760173034374, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3798660084815661855, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4023276516187745763, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 5168168308913516877, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: colliderDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204347383565844994, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
@@ -510,14 +486,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6395377880701612330, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008790517139912958, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7680116983197640273, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
       propertyPath: m_Name
       value: Penanggal
@@ -526,10 +494,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7875124118074344286, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8148086862467830870, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.38
@@ -537,14 +501,6 @@ PrefabInstance:
     - target: {fileID: 8148086862467830870, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 8535966446916859789, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8899488733670981590, guid: 5c78742a074fc554fb8805b5cd123480, type: 3}
-      propertyPath: m_Layer
-      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1143,7 +1099,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1002783609813259845, guid: 7ce1fad3b75ebe748b264ed773a75607, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.68
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 1002783609813259845, guid: 7ce1fad3b75ebe748b264ed773a75607, type: 3}
       propertyPath: m_LocalPosition.y

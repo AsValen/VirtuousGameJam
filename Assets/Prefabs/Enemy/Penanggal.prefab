@@ -386,6 +386,7 @@ MonoBehaviour:
   startingHealth: 3
   <currentHealth>k__BackingField: 0
   reviveTime: 5
+  isDead: 0
   components:
   - {fileID: 5168168308913516877}
   - {fileID: 2636058428691894721}
@@ -417,7 +418,7 @@ MonoBehaviour:
   - {fileID: 3798660084815661855}
   - {fileID: 4023276516187745763}
   - {fileID: 266727054198677409}
-  colliderDistance: -1.07
+  colliderDistance: 1
   boxCollider: {fileID: 8148086862467830870}
   chaseSpeed: 3
   playerLayer:
