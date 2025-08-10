@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class DeathMenu : MonoBehaviour
 {
     [SerializeField] private Image title;
-    [SerializeField] private Button play;
-    [SerializeField] private Button quit;
+    [SerializeField] private Button restart;
+    [SerializeField] private Button mainmenu;
 
     private void Start()
     {
@@ -17,19 +17,19 @@ public class MainMenu : MonoBehaviour
             title.rectTransform.DOScale(4f, 0.5f).SetEase(Ease.InOutQuad);
         });
         // Set up button animations
-        play.transform.localScale = Vector3.zero;
-        quit.transform.localScale = Vector3.zero;
-        play.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
-        quit.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(1f);
+        restart.transform.localScale = Vector3.zero;
+        mainmenu.transform.localScale = Vector3.zero;
+        restart.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(0.5f);
+        mainmenu.transform.DOScale(3f, 0.5f).SetEase(Ease.OutBack).SetDelay(1f);
     }
 
-    public void PlayGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene("Level1");
     }
 
-    public void ExitGame()
+    public void MainMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 }

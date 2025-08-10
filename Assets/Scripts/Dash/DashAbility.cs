@@ -32,6 +32,8 @@ public class DashAbility : MonoBehaviour
     private int enemyLayer = 6;
     private int playerLayer = 7;
 
+    [SerializeField] private float maxDashDistance = 2f;
+
     public float DashCooldownDuration
     {
         get => dashCooldownDuration;
@@ -110,8 +112,8 @@ public class DashAbility : MonoBehaviour
             dashStartPosition = transform.position;
             gravityScale = rb.gravityScale;
             rb.gravityScale = 0f;
-            //rb.AddForce(direction * dashSpeed, ForceMode2D.Impulse);
             Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, true);
+            //rb.AddForce(new Vector2(direction.x * dashSpeed, Vector2.zero.y), ForceMode2D.Impulse);
             rb.linearVelocity = new Vector2(direction.x * dashSpeed, Vector2.zero.y);
 
             dashLineRenderer.positionCount = 2;
@@ -122,7 +124,7 @@ public class DashAbility : MonoBehaviour
             isDashing = true;
             isDashCooldown = true;
             isInvulnerable = true;
-            StartCoroutine(InvulnerabilityCoroutine());
+            //StartCoroutine(InvulnerabilityCoroutine());
             StartCoroutine(CoolDownCoroutine());
         }
     }
@@ -134,6 +136,26 @@ public class DashAbility : MonoBehaviour
             Debug.Log("Dash Line Renderer is enabled, updating position.");
             dashLineRenderer.SetPosition(1, transform.position);
         }
+
+        if (isDashing)
+        {
+            float distanceTraveled = Vector2.Distance(dashStartPosition, transform.position);
+
+            if (distanceTraveled >= maxDashDistance)
+            {
+                EndDash();
+            }
+        }
+    }
+
+    private void EndDash()
+    {
+        isDashing = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.gravityScale = gravityScale;
+        Physics2D.IgnoreLayerCollision(enemyLayer, playerLayer, false);
+        dashLineRenderer.enabled = false;
+        isInvulnerable = false;
     }
 
     private IEnumerator InvulnerabilityCoroutine()
