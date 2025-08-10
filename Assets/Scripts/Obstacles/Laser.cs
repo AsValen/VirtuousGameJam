@@ -36,7 +36,7 @@ public class Laser : MonoBehaviour
         if (hit.collider != null)
         {
             Debug.Log("Hit something");
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 targetDistance = hit.distance;
                 EndVFX.SetActive(true);

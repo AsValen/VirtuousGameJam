@@ -1372,7 +1372,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   moveSpeed: 5
-  jumpHeight: 10
+  jumpHeight: 15
 --- !u!114 &5419224507972462226
 MonoBehaviour:
   m_ObjectHideFlags: 0
