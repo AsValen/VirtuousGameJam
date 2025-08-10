@@ -53,9 +53,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
-        anim.SetTrigger("Jump");
-        anim.SetBool("isGrounded", false);
+        if (!dash.IsDashing)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
+            anim.SetTrigger("Jump");
+            anim.SetBool("isGrounded", false);
+        }
     }
 
     private bool isGrounded()

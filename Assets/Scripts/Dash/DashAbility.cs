@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 using System.Linq;
 using System.Collections;
 using System;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(AudioSource))]
 public class DashAbility : MonoBehaviour
@@ -148,6 +149,12 @@ public class DashAbility : MonoBehaviour
             if (distanceTraveled >= maxDashDistance)
             {
                 EndDash();
+            }
+            else if (rb.linearVelocity.sqrMagnitude < 0.01f)
+            {
+
+                EndDash();
+
             }
         }
     }
