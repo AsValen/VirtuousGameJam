@@ -35,6 +35,11 @@ public class ExorcistEnemy : MonoBehaviour
     public static event Action<int> OnExorcistEnemy;
 
 
+    public bool IsExorcising
+    {
+        get => isExorcising;
+    }
+
     private void OnEnable()
     {
         exorcist = InputSystem.actions.FindAction("Exorcist");
