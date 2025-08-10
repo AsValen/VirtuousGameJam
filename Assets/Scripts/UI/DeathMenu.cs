@@ -24,9 +24,9 @@ public class DeathMenu : MonoBehaviour
         sfxSource = gameObject.AddComponent<AudioSource>();
 
         // Animate the title
-        title.rectTransform.DOScale(4.2f, 0.5f).SetEase(Ease.OutBounce).SetDelay(0.2f).OnComplete(() =>
+        title.rectTransform.DOScale(3.2f, 0.5f).SetEase(Ease.OutBounce).SetDelay(0.2f).OnComplete(() =>
         {
-            title.rectTransform.DOScale(4f, 0.5f).SetEase(Ease.InOutQuad);
+            title.rectTransform.DOScale(3f, 0.5f).SetEase(Ease.InOutQuad);
         });
         // Set up button animations
         restart.transform.localScale = Vector3.zero;

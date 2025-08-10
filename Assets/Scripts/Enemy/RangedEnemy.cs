@@ -7,6 +7,8 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] private float attackCooldown;
     [SerializeField] private float range;
     [SerializeField] private int damage;
+    [Tooltip("The distance at which the enemy will stop chasing.")]
+    [SerializeField] private float minDistance = 3f;
 
     [Header("Ranged Attack")]
     [SerializeField] private Transform firepoint;
@@ -43,6 +45,7 @@ public class RangedEnemy : MonoBehaviour
     private void Awake()
     {
         //anim  = GetComponent<Animator>();
+        initScale = transform.localScale;
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
     }
 
@@ -97,15 +100,24 @@ public class RangedEnemy : MonoBehaviour
         if (dashAbility == null || !dashAbility.IsInvulnerable)
         {
             cooldownTimer = 0;
-            fireballs[FindFireball()].transform.position = firepoint.position;
-            fireballs[FindFireball()].GetComponent<EnemyProjectile>().ActivateProjectile();
+            GameObject fb = fireballs[FindFireball()];
+            fb.transform.position = firepoint.position;
+
+            float direction = Mathf.Sign(transform.localScale.x);
+
+            fb.transform.localScale = new Vector3(
+                Mathf.Abs(fb.transform.localScale.x) * direction,
+                fb.transform.localScale.y,
+                fb.transform.localScale.z);
+            
+            fb.GetComponent<EnemyProjectile>().ActivateProjectile();
         }
         else
         {
             Debug.Log("Player is invulerable, no damage applied");
         }
     }
-    
+
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)
@@ -120,9 +132,11 @@ public class RangedEnemy : MonoBehaviour
 
     private bool PlayerInSight()
     {
+        Vector2 rayDirection = transform.localScale.x > 0 ? Vector2.left : Vector2.right;
+
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z),
-            0, Vector2.left, 0, playerLayer);
+            0, rayDirection, 0, playerLayer);
 
         if (hit.collider != null)
         {
@@ -151,10 +165,14 @@ public class RangedEnemy : MonoBehaviour
         }
         float distance = Vector2.Distance(transform.position, playerTransform.position);
         Vector2 targetPosition = new Vector2(playerTransform.position.x, transform.position.y);
-        if (distance > 1f)
+        if (distance > minDistance)
         {
             //Chase player
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, chaseSpeed * Time.deltaTime);
+        }
+        else
+        {
+            //Player too close, stops moving
         }
         if (provoked)
         {
