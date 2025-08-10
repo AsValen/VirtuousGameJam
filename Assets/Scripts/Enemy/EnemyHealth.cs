@@ -9,14 +9,16 @@ public class EnemyHealth : MonoBehaviour
     [Header("Revive Duration")]
     [SerializeField] private float reviveTime = 5f;
     [Header("Revive")]
-    [SerializeField] public bool IsDead { get; private set; }
+    [SerializeField] public bool isDead = false;
     [Header("Components")]
     [SerializeField] private Behaviour[] components;
 
     private SpriteRenderer sr;
 
-    
-    
+    public bool IsDead 
+    {
+        get => isDead;
+    }
 
     private Animator anim;
     private MeleeEnemy meleeEnemy;
@@ -45,7 +47,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            if(!IsDead)
+            if(!isDead)
             {
                 StartCoroutine(ReviveEnemy());
             }
@@ -53,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
     }
     private IEnumerator ReviveEnemy()
     {
-        IsDead = true;
+        isDead = true;
         anim.SetTrigger("down");
 
         foreach(Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
@@ -63,9 +65,9 @@ public class EnemyHealth : MonoBehaviour
 
         yield return new WaitForSeconds(reviveTime);
 
-        if (IsDead)
+        if (isDead)
         {
-            IsDead = false;
+            isDead = false;
             currentHealth = startingHealth;
 
             anim.SetTrigger("revive");
@@ -75,7 +77,7 @@ public class EnemyHealth : MonoBehaviour
                 component.enabled = true;
             }
         }
-        if(IsDead)
+        if(isDead)
         {
             sr.color = new Color(0.6f, 0.65f, 1f, 1f);
         }
