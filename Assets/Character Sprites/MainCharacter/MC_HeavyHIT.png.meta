@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f062fa1cebff524b80d13a841e225f0
+guid: d7bf205dc7d9b184ca389357741c66e8
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -108,6 +108,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -115,10 +128,10 @@ TextureImporter:
       name: MC_HeavyHIT_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 23
-        width: 203
-        height: 272
+        x: 0
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +150,10 @@ TextureImporter:
       name: MC_HeavyHIT_1
       rect:
         serializedVersion: 2
-        x: 301
-        y: 24
-        width: 198
-        height: 269
+        x: 250
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,10 +172,10 @@ TextureImporter:
       name: MC_HeavyHIT_2
       rect:
         serializedVersion: 2
-        x: 383
-        y: 266
-        width: 74
-        height: 29
+        x: 500
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +194,10 @@ TextureImporter:
       name: MC_HeavyHIT_3
       rect:
         serializedVersion: 2
-        x: 553
-        y: 24
-        width: 191
-        height: 256
+        x: 750
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,33 +212,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: MC_HeavyHIT_4
-      rect:
-        serializedVersion: 2
-        x: 803
-        y: 24
-        width: 184
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5338a7d0327b5c840800000000000000
-      internalID: 5243798702320681781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 05093d7d795909847a606a1a836781cc
     internalID: 0
     vertices: []
     indices: 
@@ -239,7 +230,6 @@ TextureImporter:
       MC_HeavyHIT_1: -2027432375553552080
       MC_HeavyHIT_2: -9155120957099242531
       MC_HeavyHIT_3: -4894250443273797065
-      MC_HeavyHIT_4: 5243798702320681781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

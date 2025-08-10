@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5068cb7a87dea8b439a95896d500b545
+guid: 555f78d4ac72fa445b54837d4ad44982
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -114,6 +114,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -121,10 +134,10 @@ TextureImporter:
       name: MC_Exorcise_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 24
-        width: 142
-        height: 240
+        x: 0
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,10 +156,10 @@ TextureImporter:
       name: MC_Exorcise_1
       rect:
         serializedVersion: 2
-        x: 297
-        y: 24
-        width: 140
-        height: 240
+        x: 250
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +178,10 @@ TextureImporter:
       name: MC_Exorcise_2
       rect:
         serializedVersion: 2
-        x: 534
-        y: 24
-        width: 145
-        height: 240
+        x: 500
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,10 +200,10 @@ TextureImporter:
       name: MC_Exorcise_3
       rect:
         serializedVersion: 2
-        x: 782
-        y: 24
-        width: 145
-        height: 240
+        x: 750
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +222,10 @@ TextureImporter:
       name: MC_Exorcise_4
       rect:
         serializedVersion: 2
-        x: 1036
-        y: 24
-        width: 201
-        height: 234
+        x: 1000
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +244,10 @@ TextureImporter:
       name: MC_Exorcise_5
       rect:
         serializedVersion: 2
-        x: 1286
-        y: 24
-        width: 201
-        height: 234
+        x: 1250
+        y: 0
+        width: 250
+        height: 300
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,33 +262,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: MC_Exorcise_6
-      rect:
-        serializedVersion: 2
-        x: 1492
-        y: 145
-        width: 8
-        height: 68
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 567d6979bebbcd890800000000000000
-      internalID: -7431858664533207195
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1d282a4543afa2945bf66e72e4e7b020
     internalID: 0
     vertices: []
     indices: 
@@ -291,7 +282,6 @@ TextureImporter:
       MC_Exorcise_3: 4387550521871883337
       MC_Exorcise_4: 4993210073520760701
       MC_Exorcise_5: 1287349264481839917
-      MC_Exorcise_6: -7431858664533207195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
