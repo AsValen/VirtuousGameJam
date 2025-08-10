@@ -33,6 +33,7 @@ public class EnemyPatrol : MonoBehaviour
 
     private void Update()
     {
+        if(!enabled) return;
         if(movingLeft)
         {
             if(enemy.position.x >= leftEdge.position.x)
@@ -71,9 +72,14 @@ public class EnemyPatrol : MonoBehaviour
     {
         idleTimer = 0;
         //anim.SetBool("move", true);
-        //Make enemy face direction
-        enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
+        
+        if(enabled)
+        {
+            //Make enemy face direction
+            enemy.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
+        }
         //Move in that direction
-        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direction * speed,enemy.position.y,enemy.position.z);
+        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * direction * speed, enemy.position.y, enemy.position.z);
     }
+
 }

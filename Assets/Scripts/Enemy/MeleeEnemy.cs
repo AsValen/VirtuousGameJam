@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class MeleeEnemy : MonoBehaviour
 {
@@ -24,6 +24,9 @@ public class MeleeEnemy : MonoBehaviour
 
     private float cooldownTimer = Mathf.Infinity;
     private Vector3 initScale;
+    private bool isBeingAttacked = false;
+    private bool isAttacking = false;
+    private bool provoked = false;
 
     //References
     //private Animator anim;
@@ -31,8 +34,7 @@ public class MeleeEnemy : MonoBehaviour
     private Transform playerTransform;
     private EnemyPatrol enemyPatrol;
     private DashAbility dashAbility;
-    private bool provoked = false;
-
+    
     private void Start()
     {
         dashAbility = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<DashAbility>();
@@ -56,16 +58,15 @@ public class MeleeEnemy : MonoBehaviour
                 enemyPatrol.enabled = true;
             return;
         }
-
-        cooldownTimer += Time.deltaTime;
         bool playerVisible = PlayerInSight();
+        cooldownTimer += Time.deltaTime;
         //Attack only when player is sight
         if(playerVisible)
         {
             provoked = true;
             lastSeenTime = Time.time;
         }
-        if(provoked)
+        if (provoked)
         {
             ChasePlayer(playerVisible);
             if (cooldownTimer >= attackCooldown && playerVisible)
@@ -83,7 +84,10 @@ public class MeleeEnemy : MonoBehaviour
                 cooldownTimer = Mathf.Infinity;
 
                 if (enemyPatrol != null)
+                {
                     enemyPatrol.enabled = true; // resume patrol
+                    Debug.Log("Stopped chasing, resuming patrol");
+                }
             }
         }
     }
@@ -116,17 +120,21 @@ public class MeleeEnemy : MonoBehaviour
 
         if (enemyPatrol != null)
         {
-            enemyPatrol.enabled = !playerVisible;  //if see player, stop patrolling
+            //enemyPatrol.enabled = !playerVisible;  //if see player, stop patrolling
+            enemyPatrol.enabled = !provoked;
         }
         float distance = Vector2.Distance(transform.position, playerTransform.position);
-        if(distance > 1f)
+        Vector2 targetPosition = new Vector2(playerTransform.position.x, transform.position.y);
+        if (distance > 1f)
         {
             //Chase player
-            Vector2 targetPosition = new Vector2(playerTransform.position.x, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, chaseSpeed * Time.deltaTime);
-
+        }
+        if (provoked)
+        {
             //Face player
-            float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+            //float direction = playerTransform.position.x > transform.position.x ? 1f : -1f;
+            float direction = Mathf.Sign(targetPosition.x - transform.position.x);
             transform.localScale = new Vector3(Mathf.Abs(initScale.x) * direction, initScale.y, initScale.z);
         }
     }
@@ -134,10 +142,28 @@ public class MeleeEnemy : MonoBehaviour
     {
         provoked = true;
         playerTransform = attacker;
+        isBeingAttacked = true;
+        StartCoroutine(ResetBeingAttacked());
+    }
+    private IEnumerator ResetBeingAttacked()
+    {
+        yield return new WaitForSeconds(1f); // disable attack for second(s) after getting hit
+        isBeingAttacked = false;
     }
     private void DamagePlayer()
     {
-        if(playerHealth != null)
+        if(!isAttacking && !isBeingAttacked)
+        {
+            StartCoroutine(AttackDelay());
+        }
+    }
+
+    private IEnumerator AttackDelay()
+    {
+        isAttacking = true;
+        yield return new WaitForSeconds(attackCooldown);
+
+        if (playerHealth != null)
         {
             //Damage player health
             if (dashAbility == null || !dashAbility.IsInvulnerable)
@@ -149,5 +175,6 @@ public class MeleeEnemy : MonoBehaviour
                 Debug.Log("Player is invulerable, no damage applied");
             }
         }
+        isAttacking = false;
     }
 }
