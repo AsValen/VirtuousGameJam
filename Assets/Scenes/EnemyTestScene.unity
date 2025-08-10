@@ -1115,7 +1115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.566
+      value: -2.722
       objectReference: {fileID: 0}
     - target: {fileID: 694574674106194954, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1152,6 +1152,14 @@ PrefabInstance:
     - target: {fileID: 3895476461573245922, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
       propertyPath: m_Name
       value: EnemyPatrol
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092817251790220342, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5092817251790220342, guid: b1aac292d3adebb469d6dd9e9f3381bb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
