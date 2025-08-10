@@ -34,10 +34,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage,Transform attacker)
     {
+        Debug.Log("TakeDamage");
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, startingHealth);
         meleeEnemy = GetComponent<MeleeEnemy>();
         if(meleeEnemy != null )
         {
+            Debug.Log("meleeENemy");
             meleeEnemy.OnDamaged(attacker);
         }
         if(currentHealth > 0)
@@ -47,8 +49,11 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            if(!isDead)
+            Debug.Log("isDEad?");
+            Debug.Log(isDead);
+            if (!isDead)
             {
+                Debug.Log("isDEad");
                 StartCoroutine(ReviveEnemy());
             }
         }
@@ -58,8 +63,18 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         //anim.SetTrigger("down");
 
-        foreach(Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
+        if (isDead)
         {
+            sr.color = new Color(0.6f, 0.65f, 1f, 1f);
+        }
+        else
+        {
+            sr.color = new Color(1f, 1f, 1f, 1f);
+        }
+
+        foreach (Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
+        {
+            Debug.Log("disableMOvement");
             component.enabled = false;
         }
 
@@ -76,14 +91,6 @@ public class EnemyHealth : MonoBehaviour
             {
                 component.enabled = true;
             }
-        }
-        if(isDead)
-        {
-            sr.color = new Color(0.6f, 0.65f, 1f, 1f);
-        }
-        else
-        {
-            sr.color = new Color(1f, 1f, 1f, 1f);
         }
     }
     
