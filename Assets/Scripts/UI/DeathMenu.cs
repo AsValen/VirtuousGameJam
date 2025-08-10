@@ -9,8 +9,20 @@ public class DeathMenu : MonoBehaviour
     [SerializeField] private Button restart;
     [SerializeField] private Button mainmenu;
 
+    private AudioSource bgmSource;
+    private AudioSource sfxSource;
+    [SerializeField] private AudioClip bgm;
+    [SerializeField] private AudioClip buttonClick;
+
     private void Start()
     {
+        bgmSource = gameObject.AddComponent<AudioSource>();
+        bgmSource.loop = true;
+        bgmSource.clip = bgm;
+        bgmSource.Play();
+
+        sfxSource = gameObject.AddComponent<AudioSource>();
+
         // Animate the title
         title.rectTransform.DOScale(4.2f, 0.5f).SetEase(Ease.OutBounce).SetDelay(0.2f).OnComplete(() =>
         {
@@ -25,11 +37,13 @@ public class DeathMenu : MonoBehaviour
 
     public void RestartGame()
     {
+        sfxSource.PlayOneShot(buttonClick);
         SceneManager.LoadScene("Level1");
     }
 
     public void MainMenu()
     {
+        sfxSource.PlayOneShot(buttonClick);
         SceneManager.LoadScene("MainMenu");
     }
 }

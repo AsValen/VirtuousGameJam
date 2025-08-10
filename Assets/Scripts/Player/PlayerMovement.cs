@@ -6,12 +6,17 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
     private BoxCollider2D boxCollider;
+
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpHeight = 10f;
 
     private DashAbility dash;
     private float horizontalInput;
+
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip walkingSound;
 
     private void Start()
     {
@@ -20,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
         dash = GetComponentInChildren<DashAbility>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -29,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (!dash.IsDashing)
         {
+            if (audioSource != null && walkingSound != null)
+            {
+                audioSource.PlayOneShot(walkingSound);
+            }
             rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
         }
 
@@ -54,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpHeight);
+        if (audioSource != null && jumpSound != null)
+        {
+            audioSource.PlayOneShot(jumpSound);
+        }
         anim.SetTrigger("Jump");
         anim.SetBool("isGrounded", false);
     }

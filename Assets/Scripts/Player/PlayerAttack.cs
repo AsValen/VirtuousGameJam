@@ -24,12 +24,16 @@ public class PlayerAttack : MonoBehaviour
     private bool isCharging;
     private float chargeStartTime;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip swordSlashSound;
+
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         weapon = weaponHitBoxTransform.GetComponent<WeaponHitbox>();
         movement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -85,6 +89,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 weapon.SetDamage(baseAtk);
                 weapon.EnableHitbox();
+                audioSource.PlayOneShot(swordSlashSound);
                 StartCoroutine(DisableHitboxAfterTime(0.2f));
             }
         }
@@ -125,6 +130,7 @@ public class PlayerAttack : MonoBehaviour
         {
             weapon.SetDamage(damage);
             weapon.EnableHitbox();
+            audioSource.PlayOneShot(swordSlashSound);
             StartCoroutine(DisableHitboxAfterTime(0.3f));
         }
 
