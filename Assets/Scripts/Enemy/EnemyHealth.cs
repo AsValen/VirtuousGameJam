@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
         get => isDead;
     }
 
-    private Animator anim;
+    //private Animator anim;
     private MeleeEnemy meleeEnemy;
     private void Start()
     {
@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = startingHealth;
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(float damage,Transform attacker)
@@ -43,7 +43,7 @@ public class EnemyHealth : MonoBehaviour
         if(currentHealth > 0)
         {
             //enemy hurt
-            anim.SetTrigger("hurt");
+            //anim.SetTrigger("hurt");
         }
         else
         {
@@ -56,7 +56,7 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator ReviveEnemy()
     {
         isDead = true;
-        anim.SetTrigger("down");
+        //anim.SetTrigger("down");
 
         foreach(Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
         {
@@ -70,7 +70,7 @@ public class EnemyHealth : MonoBehaviour
             isDead = false;
             currentHealth = startingHealth;
 
-            anim.SetTrigger("revive");
+            //anim.SetTrigger("revive");
 
             foreach (Behaviour component in components)
             {
