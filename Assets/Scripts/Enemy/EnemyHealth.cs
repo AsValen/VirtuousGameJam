@@ -63,14 +63,8 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         //anim.SetTrigger("down");
 
-        if (isDead)
-        {
-            sr.color = new Color(0.6f, 0.65f, 1f, 1f);
-        }
-        else
-        {
-            sr.color = new Color(1f, 1f, 1f, 1f);
-        }
+ 
+        sr.color = new Color(0.6f, 0.65f, 1f, 1f); 
 
         foreach (Behaviour component in components) //disable MeleeEnemy and EnemyPatrol script
         {
@@ -84,6 +78,7 @@ public class EnemyHealth : MonoBehaviour
         {
             isDead = false;
             currentHealth = startingHealth;
+            sr.color = new Color(1f, 1f, 1f, 1f);
 
             //anim.SetTrigger("revive");
 
