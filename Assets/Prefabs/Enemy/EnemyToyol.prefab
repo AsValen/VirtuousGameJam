@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1446469302240995364}
   - component: {fileID: 1149848524244245551}
   - component: {fileID: -671070952183643038}
-  - component: {fileID: 3548619378116652714}
   m_Layer: 6
   m_Name: EnemyToyol
   m_TagString: Untagged
@@ -81,9 +80,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1797987393758864142, guid: 20de8bc2dd276774e88d40302ba43f67, type: 3}
+  m_Sprite: {fileID: 3268651955574491561, guid: e94b3ccdf17645c4da89d41180d6158d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.91, y: 1.55}
@@ -130,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.91, y: 1.55}
+    oldSize: {x: 0.78, y: 1.22}
     newSize: {x: 0.91, y: 1.55}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -151,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCooldown: 2
-  range: 2.5
+  range: 1.5
   damage: 2
   colliderDistance: 0.45
   boxCollider: {fileID: 6116300114509821482}
@@ -175,7 +174,6 @@ MonoBehaviour:
   startingHealth: 3
   <currentHealth>k__BackingField: 0
   reviveTime: 5
-  isDead: 0
   components:
   - {fileID: 1446469302240995364}
   - {fileID: 0}
@@ -192,25 +190,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
---- !u!95 &3548619378116652714
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6689133274672150285}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
