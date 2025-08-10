@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int playerHP = 100;
@@ -8,12 +11,16 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Image fillImage;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip deathSound;
+
     private void Start()
     {
         maxHP = playerHP;
         hpSlider.maxValue = maxHP;
         hpSlider.value = playerHP;
         UpdateHPUI();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -47,7 +54,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (playerHP <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(goToDeathMenu());
         }
         else if (playerHP <= 3)
         {
@@ -57,5 +64,16 @@ public class PlayerStats : MonoBehaviour
         {
             fillImage.color = Color.green;
         }
+    }
+
+    private IEnumerator goToDeathMenu() 
+    {
+        if (audioSource != null && deathSound != null)
+        {
+            audioSource.PlayOneShot(deathSound);
+        }
+
+        yield return new WaitForSeconds(0.2f);
+        SceneManager.LoadScene("DeathMenu");
     }
 }
