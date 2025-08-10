@@ -1524,8 +1524,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   weaponHitBoxTransform: {fileID: 1723478549685716384}
-  weaponOffsetLeft: {x: 0, y: 0, z: 0}
-  weaponOffsetRight: {x: 0, y: 0, z: 0}
+  weaponOffsetLeft: {x: -1, y: 0, z: 0}
+  weaponOffsetRight: {x: 1, y: 0, z: 0}
   baseAtk: 5
   attackCooldown: 0.3
   maxChargeTime: 1
